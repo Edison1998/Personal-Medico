@@ -1,0 +1,77 @@
+﻿@model EntidadRegistroPersonal.EntPersonal
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CREAR</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+        @if (TempData["error"]!=null)
+        {
+            <div class="alert alert-danger">@TempData["error"]</div>
+        }
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Crear Registro</h4>
+        <hr />
+        <div class="form-group">
+            <p class="control-label col-md-2">Nombre</p>
+            <div class="col-md-10">
+                <input type="text" name="Nombre" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Paterno</p>
+            <div class="col-md-10">
+                <input type="text" name="Paterno" class="form-control" required/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Puesto de Trabajo</p>
+            <div class="col-md-10">
+                @*Html.DropDownList("PuestoDeTrabajoId")*@
+                @Html.DropDownList("PuestoDeTrabajoId", null, "Seleccionar", new {@class = "form-control"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Turno</p>
+            <div class="col-md-10">
+                @*Html.DropDownList("Turno")*@
+                @Html.DropDownList("Turno", null, "Seleccionar", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <br />
+                <input type="submit" value="Crear" class="btn btn-outline-primary" />
+                <a href="/Home/Index" class="btn btn-outline-danger">Regresar</a>
+            </div>
+        </div>
+    </div>
+        }
+
+    </div>
+</body>
+</html>

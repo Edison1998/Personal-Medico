@@ -1,0 +1,86 @@
+﻿@model IEnumerable<EntidadRegistroPersonal.EntPersonal>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <div class="container">
+
+        @if (TempData["mensaje"] != null)
+        {
+            <div class="alert alert-success">@TempData["mensaje"]</div>
+        }
+
+        <p>
+            <a href="/Home/Crear" class="btn btn-outline-success">CREAR</a>
+        </p>
+        <!--Buscador-->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <form action="/Home/Buscar/" method="post">
+                    <input type="text" name="txtBuscar" placeholder="Ingresa el nombre" />
+                    <input type="submit" value="Buscar" class="btn btn-outline-secondary"/>
+                </form>
+            </div><br />
+        </div>
+        <table class="table table-active">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Paterno
+                </th>
+                <th>
+                    Fecha de Registro
+                </th>
+                <th>
+                    Puesto
+                </th>
+                <th>
+                    Turno
+                </th>
+                <th>
+                    Operaciones
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Nombre
+                    </td>
+                    <td>
+                        @item.Paterno
+                    </td>
+                    <td>
+                        @item.FechaRegistro
+                    </td>
+                    <td>
+                        @item.EntPuesto.Nombre
+                    </td>
+                    <td>
+                        @item.EntityTurnos.Turno
+                    </td>
+                    <td>
+                        <a href="/Home/Editar/?Id=@item.Id" class="btn btn-outline-primary">Editar</a>
+                        <a href="/Home/Eliminar/?Id=@item.Id" class="btn btn-outline-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿@model EntidadRegistroPersonal.EntPersonal
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <div class="container">
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Editar Registro</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    <p class="control-label col-md-2">Nombre</p>
+                    <div class="col-md-10">
+                        <input type="text" name="Nombre" value="@Model.Nombre" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="control-label col-md-2">Paterno</p>
+                    <div class="col-md-10">
+                        <input type="text" name="Paterno" value="@Model.Paterno" class="form-control" required/>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="control-label col-md-2">Puesto de Trabajo</p>
+                    <div class="col-md-10">
+                        @*Html.DropDownList("PuestoDeTrabajoId")*@
+                        @*Html.DropDownList("PuestoDeTrabajoId", null, "Seleccionar", new {@class = "form-Control"})*@
+                        @Html.DropDownList("PuestoDeTrabajoId", null, new {@class = "form-control"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="control-label col-md-2">Turno</p>
+                    <div class="col-md-10">
+                        @*Html.DropDownList("Turno")*@
+                        @*Html.DropDownList("Turno", null, "Seleccionar", new { @class = "form-Control" })*@
+                        @Html.DropDownList("Turno", null, new {@class = "form-control"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10"><br />
+                        <input type="submit" value="Guardar" class="btn btn-outline-success" />
+                        <a href="/Home/Index/" class="btn btn-outline-danger">Regresar</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</body>
+</html>

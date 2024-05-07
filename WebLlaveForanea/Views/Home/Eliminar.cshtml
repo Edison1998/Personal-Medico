@@ -1,0 +1,75 @@
+﻿@model EntidadRegistroPersonal.EntPersonal
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Eliminar</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h3>¿Estas seguro de querer eliminar este registro?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Nombre</label>
+                </dt>
+
+                <dd>
+                    <label>@Model.Nombre</label>
+                </dd>
+
+                <dt>
+                    <label>Paterno</label>
+                </dt>
+
+                <dd>
+                    <label>@Model.Paterno</label>
+                </dd>
+
+                <dt>
+                    <label>Fecha de Registro</label>
+                </dt>
+
+                <dd>
+                    <label>@Model.FechaRegistro</label>
+                </dd>
+
+                <dt>
+                    <label>Puesto</label>
+                </dt>
+
+                <dd>
+                    <label>@Model.EntPuesto.Nombre</label>
+                </dd>
+
+                <dt>
+                    <label>Turno</label>
+                </dt>
+
+                <dd>
+                    <label>@Model.EntityTurnos.Turno</label>
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.Id" />
+                <div class="form-actions no-color">
+                    <input type="submit" value="Eliminar" class="btn btn-outline-danger" />
+                    <a href="/Home/Index/" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
